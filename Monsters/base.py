@@ -7,6 +7,7 @@ class Base:
     def __init__(self, name, level, maxHp, hp, morale, dmg, armour):
         self.name = name
         self.level = level
+        self.loot = 0
         # Class specific
         self.maxHp = maxHp
         self.hp = hp
@@ -20,9 +21,9 @@ class Base:
         self.target = None
         self.damage= self.baseDmg
 
-    def actionRoll(self, morale, alignment):
+    def actionRoll(self, morale):
         """Performs roll for AI action."""
-        return alignment+morale+randint(1, 6)*randint(1, 6)
+        return morale+randint(1, 6)*randint(1, 6)
 
     def updateHp(self, damage):
         """Input the amount of damage dealt."""

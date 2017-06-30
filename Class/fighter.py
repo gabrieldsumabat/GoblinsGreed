@@ -41,7 +41,7 @@ class Fighter(Class.base.Base):
         self.action = "charge"
         print(self.name+" charges the enemy!")
         target.updateHp(self.damage//2)
-        print(self.name+" stabs the enemy with the point of their blade and inspires the party!")
+        print(self.name+" stabs the enemy with the point of the blade and inspires the party!")
 
     def blunt(self, target):
         """Swings a blunt strike which damages the targets armour"""
