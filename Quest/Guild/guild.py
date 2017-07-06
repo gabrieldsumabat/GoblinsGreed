@@ -20,7 +20,7 @@ def guild(playerClass, party):
         except ValueError as e:
             print("Input is not an integer!")
     if area == 1:
-        if playerClass.gold < 30:
+        if playerClass.gold < 60:
             print("Without the gold to recruit, you doubt you'll find a warm welcome there.")
             guild(playerClass, party)
         elif len(party) == 3:
@@ -29,5 +29,7 @@ def guild(playerClass, party):
         else:
             Recruit(playerClass, party)
             guild(playerClass, party)
+    if area == 2:
+        print("Greedy Fingers is currently closed (TO BE DEVELOPED LATER)")
     else:
-        print("Not Implemented Yet")
+        print("GETQUESSTHERE")
