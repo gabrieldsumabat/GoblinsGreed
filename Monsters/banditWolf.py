@@ -3,7 +3,7 @@ from random import randint
 
 
 class BanditWolf(Base):
-
+    """base werewolf bandit leader"""
     def __init__(self, name, level, maxHp, hp, morale, dmg, armour):
         super().__init__(name, level, maxHp, hp, morale, dmg, armour)
         self.moon = False

@@ -7,6 +7,7 @@ from random import choice
 
 
 def generateNPC(playerClass):
+    """generates ai players"""
     classSelect = randint(1, 4)
     if playerClass.level > 1:
         level = playerClass.level - randint(-1, 1)
