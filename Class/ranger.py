@@ -24,22 +24,26 @@ class Ranger(Class.base.Base):
                 print("Its a disaster!"+target.name+" has just been hit by "+self.name+"'s steel arrow!!")
                 target.armour = target.armour - randint(1, 3)
                 target.updateHp(self.damage)
+                self.target = target
             else:
                 print(self.name+"'s arrow missed completely!")
         else:
             print("The steel arrow strikes "+target.name+" and damages their armour!")
             target.armour = target.armour - randint(1, 3)
             target.updateHp(self.damage)
+            self.target = target
 
     def quickShot(self, target):
         """A fast accurate shot at the unarmoured spots on the enemy."""
         self.action = "quickShot"
+        self.target = target
         print(self.name+" prepares a small arrow.")
         target.updateHp(self.damage*2)
 
     def stab(self, target):
         """Stabs the enemy, ignores armour"""
         self.action = "stab"
+        self.target = target
         if target.armour < 0:
             print(self.name+" stabs "+target.name+" unprotected flesh!")
             target.updateHp(self.damage)

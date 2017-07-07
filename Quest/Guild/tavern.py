@@ -21,7 +21,7 @@ def Recruit(playerClass, party):
             while valid == False:
                 hire = input()
                 if hire == 'y':
-                    print("You have hired "+ai.name+" for "+str(cost)+" gold.\n\n")
+                    print("You have hired "+ai.name+" for "+str(cost)+" gold.\n")
                     party.append(ai)
                     playerClass.gold += -cost
                     valid = True
@@ -32,6 +32,7 @@ def Recruit(playerClass, party):
                     print("Invalid Input")
         else:
             print("Currently at max party size.")
+            break
     print("\nYour current party is:\n")
     for member in party:
         print(member.name+", class: "+member.classType+", level:"+str(member.level))

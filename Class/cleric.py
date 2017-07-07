@@ -13,6 +13,7 @@ class Cleric(Class.base.Base):
     def zeal(self, target):
         """The cleric tests his targets faith!"""
         self.action = "zeal"
+        self.target = target
         if randint(1, 3) == 3:
             print(target.name+"'s faith was found wanting! "+self.name+" smites the heretic!")
             target.updateHp(self.damage)
@@ -25,6 +26,7 @@ class Cleric(Class.base.Base):
     def heal(self, target):
         """The cleric heals the wounded."""
         self.action = "heal"
+        self.target = target
         print(self.name+" has healed "+target.name+"!")
         target.updateHp(-self.damage//2)
 

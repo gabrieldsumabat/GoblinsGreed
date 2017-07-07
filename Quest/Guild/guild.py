@@ -1,4 +1,8 @@
 from Quest.Guild.tavern import Recruit
+# Remove these later
+from Combat.combat import combat
+from Monsters.banditWolf import BanditWolf
+
 
 def guild(playerClass, party):
     """Platform for general guild functions"""
@@ -22,14 +26,16 @@ def guild(playerClass, party):
     if area == 1:
         if playerClass.gold < 60:
             print("Without the gold to recruit, you doubt you'll find a warm welcome there.")
-            guild(playerClass, party)
         elif len(party) == 3:
             print("With a full party, you have no reason to re-enter the tavern.")
-            guild(playerClass, party)
         else:
             Recruit(playerClass, party)
-            guild(playerClass, party)
     if area == 2:
         print("Greedy Fingers is currently closed (TO BE DEVELOPED LATER)")
-    else:
-        print("GETQUESSTHERE")
+    if area == 3:
+        print("GET QUEST HERE")
+        boss = BanditWolf("Fenrir", 1, 30, 10, 5, 4)
+        enemy = list()
+        enemy.append(boss)
+        combat(party, enemy)
+    guild(playerClass, party)

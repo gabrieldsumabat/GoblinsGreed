@@ -1,10 +1,12 @@
 from random import randint
+from random import choice
 
 
 class Base:
     """Base traits and stats for all character classes"""
 
     def __init__(self, name, level, alignment, trust, maxHp, morale, dmg, armour, greed):
+        self.enemy = False
         self.name = name
         self.level = level
         self.trust = trust
@@ -34,9 +36,10 @@ class Base:
         self.equipment = []
         self.stash = []
 
-    def actionRoll(self, morale, alignment):
-        """Performs roll for AI action."""
-        return alignment+morale+randint(1, 6)*randint(1, 6)
+    def calculateAction(self, enemy, party):
+        """Performs roll for AI calculateAction."""
+        target = choice(enemy)
+        self.target = target
 
     def updateHp(self, damage):
         """Input the amount of damage dealt."""

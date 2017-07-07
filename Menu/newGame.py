@@ -12,7 +12,7 @@ def newGame():
     name = input()
     print("Please enter the difficulty level from 1 - 5 with 1 being the easiest and 5 being the hardest.")
     valid = False
-    while valid == False:
+    while valid is False:
         try:
             difficulty = input()
             difficulty = int(difficulty)
@@ -32,7 +32,7 @@ def newGame():
             """)
     valid = False
     classSelect = {1: "Fighter", 2: "Ranger", 3: "Cleric", 4: "Mage"}
-    while valid == False:
+    while valid is False:
         try:
             playerClass = input()
             playerClass = int(playerClass)

@@ -13,13 +13,16 @@ class Mage(Class.base.Base):
     def fireball(self, target, party):
         """A searing explosive ball of fire is unleashed!"""
         self.action = "fireball"
+        self.target = target
         print(self.name+" gathers a burning ball of fire in his hands!")
         if randint(1, self.mana) < 5:
             print("Its a disaster!"+self.name+"'s fireball has just exploded in his own hands!")
-            self.updateHp(self.damage * 3)
+            self.updateHp(self.damage * 2)
             for member in party:
                 if member.name != self.name:
                     member.updateHp(self.damage)
+                    if member.hp <= 0:
+                        self.partyDeath(member, party)
         else:
             print("The fireball explodes on "+target.name+" and burns them alive!")
             target.updateHp(self.damage*5)
@@ -28,6 +31,7 @@ class Mage(Class.base.Base):
     def flameBolt(self, target):
         """A controlled flame bolt aimed at piercing the enemy armour"""
         self.action = "flameBolt"
+        self.target = target
         print(self.name+" forms a spear of fire!")
         if randint(1, self.mana) < 2:
             print("The spell collapses and the flame bolt explodes!")

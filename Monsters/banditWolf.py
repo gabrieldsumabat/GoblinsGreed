@@ -4,8 +4,8 @@ from random import randint
 
 class BanditWolf(Base):
     """base werewolf bandit leader"""
-    def __init__(self, name, level, maxHp, hp, morale, dmg, armour):
-        super().__init__(name, level, maxHp, hp, morale, dmg, armour)
+    def __init__(self, name, level, maxHp, morale, dmg, armour):
+        super().__init__(name, level, maxHp, morale, dmg, armour)
         self.moon = False
         self.transform = False
 
@@ -26,12 +26,14 @@ class BanditWolf(Base):
     def slash(self, target):
         """slashes a party member"""
         self.action = "slash"
+        self.target = target
         print(self.name+" slashes "+target.name+"!")
         target.updateHP(self.damage)
 
     def bash(self, target):
         """bashes the enemy whis his shield or first"""
         self.action = "bash"
+        self.target = target
         if self.transform:
             print(self.name+" slams his fist into "+target.name+".")
             target.updateHP(self.damage//2)
@@ -44,6 +46,7 @@ class BanditWolf(Base):
     def rend(self, target):
         """tears at the target's armour"""
         self.action = "rend"
+        self.target = target
         if self.transform:
             print(self.name+" uses his claws to rend "+target.name+"'s armour.")
             target.updateHP(self.damage//2)
@@ -60,7 +63,11 @@ class BanditWolf(Base):
         for member in party:
             if self.transform:
                 member.updateHp(self.damage)
+                if member.hp <= 0:
+                    self.partyDeath(member, party)
             else:
                 member.updateHp(self.damage // 2)
+                if member.hp <= 0:
+                    self.partyDeath(member, party)
                 print("The attack has revealed weak spots in his armour!")
                 self.armour += -self.level
