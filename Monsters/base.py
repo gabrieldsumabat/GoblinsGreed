@@ -31,11 +31,20 @@ class Base:
 
     def updateHp(self, damage):
         """Input the amount of damage dealt."""
-        print(self.name+" was damaged for "+str(damage))
-        self.hp = self.hp - damage
+        if self.armour < 0:
+            self.armour = 0
+        if damage < 0:
+            print(self.name + " was healed for " + str(-damage) + ".")
+        elif damage > self.armour:
+            print(self.name+" was damaged for "+str(damage)+".")
+            self.hp += -damage
+            self.morale += -damage
+        else:
+            print("The blow bounced off "+self.name+"'s armour!")
         if self.hp > self.maxHp:
+            self.morale = self.hp - self.maxHp
             self.hp = self.maxHp
-        self.morale = self.morale-damage
+        print(str(self.hp)+" hp left!")
 
     def death(self, party):
         print(self.name+" has been slain!")

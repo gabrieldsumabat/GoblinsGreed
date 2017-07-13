@@ -22,15 +22,26 @@ class Fighter(Class.base.Base):
                 if hero.name != self.name:
                     inRange.append(hero)
             if len(inRange) != 0:
-                target = choice(inRange)
+                target = choice(party)
                 self.target = target
                 print(target.name+" has just been hit by "+self.name+"'s great cleave!")
                 target.updateHp(self.damage * 3)
+                self.morale += -self.damage * 3
+                self.contribution += -self.damage*2
+                self.threat = -self.damage
+                self.trust += -self.damage * 3
             else:
                 print(self.name+"'s strike missed completely!")
+                self.contribution += -self.damage
+                self.trust += -self.damage
+                self.morale += -self.damage
         else:
             print(self.name+" has landed a mighty blow on the enemy!")
             target.updateHp(self.damage * 3)
+            self.morale += self.damage * 3
+            self.contribution += self.damage * 3
+            self.threat = self.damage * 3
+            self.trust += self.damage
 
     def slash(self, target):
         """A heavy blow to their midsection."""
@@ -38,14 +49,23 @@ class Fighter(Class.base.Base):
         self.target = target
         print(self.name+" slashes "+target.name)
         target.updateHp(self.damage)
+        self.morale += self.damage
+        self.threat += self.damage
+        self.contribution += self.damage//2
+        self.trust += self.damage // 2
 
-    def charge(self, target):
+    def charge(self, target, party):
         """Close the distance!"""
         self.action = "charge"
         self.target = target
         print(self.name+" charges the enemy!")
         target.updateHp(self.damage//2)
         print(self.name+" stabs the enemy with the point of the blade and inspires the party!")
+        for member in party:
+            member.morale += self.damage//2
+        self.contribution += self.damage
+        self.threat += self.damage * 2
+        self.trust += self.damage // 2
 
     def blunt(self, target):
         """Swings a blunt strike which damages the targets armour"""
@@ -58,5 +78,8 @@ class Fighter(Class.base.Base):
         print(self.name+" swings a blunted strike at "+target.name+"'s armour!")
         target.armour += -randint(1, rend)
         print(target.name+"'s armour has been damaged!")
+        self.contribution += rend
+        self.threat += rend*3
+        self.trust += rend
 
 

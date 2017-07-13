@@ -34,7 +34,9 @@ class Cleric(Class.base.Base):
         """The cleric stands tall as an icon!"""
         self.action = "martyr"
         print(self.name+"'s courage impresses the party!")
-        self.trust += 5
+        self.trust += self.damage
+        self.morale += self.damage
+        self.threat += self.damage * 2
 
     def pray(self):
         """The cleric prays to his deity."""
@@ -46,4 +48,6 @@ class Cleric(Class.base.Base):
             print(self.name+" grows concerned with his path...")
             self.damage += -5
             self.morale += -5
+        else:
+            self.doubt += -self.damage * 2
 

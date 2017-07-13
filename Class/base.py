@@ -49,12 +49,13 @@ class Base:
             print(self.name + " was healed for " + str(-damage) + ".")
         elif damage > self.armour:
             print(self.name+" was damaged for "+str(damage)+".")
-            self.hp = self.hp - damage
+            self.hp += -damage
+            self.morale += -damage
         else:
             print("The blow bounced off "+self.name+"'s armour!")
         if self.hp > self.maxHp:
+            self.morale = self.hp - self.maxHp
             self.hp = self.maxHp
-        self.morale = self.morale-damage
         print(str(self.hp)+" hp left!")
 
     def death(self, party):
