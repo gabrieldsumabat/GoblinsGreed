@@ -17,11 +17,19 @@ class Cleric(Class.base.Base):
         if randint(1, 3) == 3:
             print(target.name+"'s faith was found wanting! "+self.name+" smites the heretic!")
             target.updateHp(self.damage)
+            self.trust += -self.damage
+            self.morale += -self.damage
+            self.threat += -self.damage
+            self.contribution += -self.damage
         else:
             print(target.name+" has received a blessing!")
             target.updateHp(-self.damage)
             print(target.name+" has increased their damage by five!")
             target.damage = target.damage+5
+            self.trust += self.damage
+            self.morale += self.damage
+            self.threat += self.damage
+            self.contribution += self.damage
 
     def heal(self, target):
         """The cleric heals the wounded."""
@@ -29,6 +37,10 @@ class Cleric(Class.base.Base):
         self.target = target
         print(self.name+" has healed "+target.name+"!")
         target.updateHp(-self.damage//2)
+        self.trust += self.damage
+        self.morale += self.damage
+        self.threat += self.damage
+        self.contribution += self.damage
 
     def martyr(self):
         """The cleric stands tall as an icon!"""
