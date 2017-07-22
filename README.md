@@ -1,5 +1,5 @@
 # GoblinsGreed
-Single player RPG game. Development is ongoing.
+Single player RPG game. Development is on hold.
 
 Disowned and disinherited by the Baron, you are left penniless and vengeful. 
 At the GUILD you have signed a blood pact in exchange for the gold you need to seek revenge.
